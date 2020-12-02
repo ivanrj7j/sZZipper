@@ -27,6 +27,13 @@ app_name = 'sZZipper'
 app_icon = 'icon.ico'
 # this is the icon of app, you can change it too 
 
+def archive():
+    """
+    This takes the file as a parameter to function
+    This will also archive the folder with a name
+    """
+    pass
+
 root = Tk()
 # this is the tkinter object 
 root.geometry('400x200')
@@ -36,6 +43,19 @@ root.resizable(False, False)
 root.title(app_name)
 # this makes the title of the app as defined
 root.iconbitmap(app_icon)
+# this changes the icon of the app 
+
+frame = Frame(root)
+frame.pack()
+# this creates the frame 
+
+archive_btn = Button(frame, text='Archive File', command=archive)
+archive_btn.pack()
+# this pack the archive button to the frame
+
+extract_btn = Button(frame, text='Extract File')
+archive_btn.pack()
+# this pack the extract button to frame
 
 root.mainloop()
 # this runs the window 
