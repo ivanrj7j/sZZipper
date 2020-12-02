@@ -32,14 +32,30 @@ def archive():
     This takes the file as a parameter to function
     This will also archive the folder with a name
     """
-    pass
+    file = filedialog.askdirectory()
+    # asks for a directory
+    files_in_folder = os.listdir(file)
+    # return all the file in folder 
+    file_to_save = filedialog.asksaveasfilename(defaultextension='.zip', filetypes=[("Zip Files", "*.zip")])
+    # ask a file name to save with 
+    with zipfile.ZipFile(file_to_save, 'w', compression=zipfile.ZIP_DEFLATED) as target:
+        for file_n in files_in_folder:
+            file_complete_name = file + '/' + file_n
+            print(f'[NEW ZIP NAME] The new zip name is {file_complete_name}')
+            target.write(file_complete_name)
+            # saves all the files in directory to a zip file 
 
 def extract():
     """
     This will take a zip file as a parameter
     This will extract the folder with a name
     """
-    pass
+    file = filedialog.askopenfilenames(filetypes=[("Zip Files", "*.zip")])
+    # asks a zip file
+    folder = filedialog.askdirectory()
+    # asks a folder 
+    with zipfile.ZipFile(file, 'r') as target:
+        target.extractall(folder)
 
 root = Tk()
 # this is the tkinter object 
@@ -56,9 +72,12 @@ frame = Frame(root)
 frame.pack()
 # this creates the frame 
 
-archive_btn = Button(frame, text='Archive File', command=archive)
+archive_btn = Button(frame, text='Archive Folder', command=archive)
 archive_btn.pack()
 # this pack the archive button to the frame
+
+archive_file_btn = Button(frame, text='Archive File', command=archive)
+archive_file_btn.pack()
 
 extract_btn = Button(frame, text='Extract File', command=extract)
 extract_btn.pack()
