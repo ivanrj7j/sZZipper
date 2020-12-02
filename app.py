@@ -34,6 +34,13 @@ def archive():
     """
     pass
 
+def extract():
+    """
+    This will take a zip file as a parameter
+    This will extract the folder with a name
+    """
+    pass
+
 root = Tk()
 # this is the tkinter object 
 root.geometry('400x200')
@@ -53,8 +60,8 @@ archive_btn = Button(frame, text='Archive File', command=archive)
 archive_btn.pack()
 # this pack the archive button to the frame
 
-extract_btn = Button(frame, text='Extract File')
-archive_btn.pack()
+extract_btn = Button(frame, text='Extract File', command=extract)
+extract_btn.pack()
 # this pack the extract button to frame
 
 root.mainloop()
